@@ -1,4 +1,5 @@
 from neo4j_client import Neo4JClient
+import random
 
 neo4j = Neo4JClient()
 
@@ -20,7 +21,6 @@ def query(tx, genre):
 def search_graph(genre):
     with neo4j.db().session(database="neo4j") as session:
         returned_genres = set()
-        print("Getting data for {}".format(genre))
         returned_genres.update(session.execute_read(query, genre))
         return list(returned_genres)
 
@@ -32,11 +32,15 @@ def bfs(genres, depth):
             new_genres.update([returned_genre for returned_genre in returned_genres if returned_genre not in genres and returned_genre != genre])
         genres = new_genres
     
-    return genres
+    return list(genres)
 
 """
 TODO:
 obviously, the BFS can get out of hand. So it might be good to randomly pick data to a smaller subset in order to not overload Spotify API
 """
 genres = ["orchestral soundtrack","soundtrack", "alternative hip hop", "modern rock", "rock", "french soundtrack", "orchestral soundtrack", "soundtrack", "anime", "anime score", "japanese classical", "japanese soundtrack", "orchestral soundtrack","german soundtrack", "orchestral soundtrack", "soundtrack"]
-print(bfs(genres, 2))
+ls = bfs(genres, 3)
+
+print(random.choices(ls, k = 15))
+
+neo4j.close()
