@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from service.graph_client import bfs
 from service.spotify_client import retrieve_user_data, retrieve_user_genres, spotify_manager, search_genre_data, create_playlist
 import threading
+import time
 
 app = Flask(__name__)
 app = Flask(__name__)
@@ -22,7 +23,7 @@ def read_root():
 
 @app.get("/login")
 def login():
-    scope = "user-top-read"
+    scope = "user-top-read playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
     cache_handler = spotipy.cache_handler.CacheFileHandler(session)
     auth_manager = spotipy.oauth2.SpotifyOAuth(scope=scope,
                                                cache_handler=cache_handler,
@@ -50,19 +51,21 @@ def user_data():
 def search():
     depth = int(request.args.get('depth'))
     spotify = spotify_manager(session)
-
+    
     def threaded_function(depth):
         genres = list(retrieve_user_genres(spotify))
         bfs_genres = bfs(genres, depth)
-        print(bfs_genres)
-        song_list = search_genre_data(spotify, bfs_genres)
-        create_playlist(spotify, song_list, bfs_genres)
-    
+        playlist_id = create_playlist(spotify, bfs_genres)
+        search_genre_data(spotify, bfs_genres, playlist_id)
+
     thread = threading.Thread(target=threaded_function, kwargs={'depth': depth})
     thread.start()
-    
-    # based on depth and genres length, return estimated mins
-    return "x mins"
+    if depth == 1:
+        return "1 - 2 minutes"
+    elif depth == 2:
+        return "2 - 3 minutes"
+    elif depth == 3: 
+        return "3 - 5 minutes"
 
 if __name__ == "__main__":
     app.run(debug=True)
