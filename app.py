@@ -40,7 +40,7 @@ def login():
         return {"auth_url": auth_url, "redirect_url": ""}
 
     # 3. user has been authenticated and redirected to proper URL
-    return "url"
+    return {"auth_url": "", "redirect_url": "URL"}
 
 @app.get("/user-data")
 def user_data():
