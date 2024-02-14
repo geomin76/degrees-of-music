@@ -1,5 +1,5 @@
 import json
-from neo4j_client import Neo4JClient
+from graph_client import Neo4JClient
 
 data = {}
 with open('./graph-data.json') as f:
