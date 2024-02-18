@@ -19,7 +19,7 @@ load_dotenv()
 
 @app.get("/")
 def read_root():
-    return "Hello, World!"
+    return "Hello, World"
 
 @app.get("/login")
 def login():
@@ -37,10 +37,10 @@ def login():
     # 1. if user has not logged in yet
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         auth_url = auth_manager.get_authorize_url()
-        return {"auth_url": auth_url, "redirect_url": ""}
+        return {"auth_url": auth_url, "redirect": ""}
 
     # 3. user has been authenticated and redirected to proper URL
-    return {"auth_url": "", "redirect_url": "URL"}
+    return {"auth_url": "", "redirect": "success"}
 
 @app.get("/user-data")
 def user_data():
