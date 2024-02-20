@@ -19,7 +19,7 @@ load_dotenv()
 
 @app.get("/")
 def read_root():
-    return "Hello, World"
+    return "Hello, World!"
 
 @app.get("/login")
 def login():
