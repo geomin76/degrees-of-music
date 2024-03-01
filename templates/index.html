@@ -3,7 +3,16 @@
 <body>
     {% if name %}
         <p>Hi {{ name }}!</p>
+        <p> {{ data }} </p>
     {% endif %}
+    <br/>
+    <form method="POST" action="{{ url_for('search') }}">
+        <div class="form-group">
+            <label for="depth">Select depth</label>
+            <input type="string" id="depth" name="depth" required>
+        </div>
+        <button type="submit">Generate playlist</button>
+    </form>
 </body>
 
 </html>

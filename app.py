@@ -35,19 +35,19 @@ def login():
         return render_template("login.html", auth_url=auth_url)
 
     # 3. user has been authenticated and redirected to proper URL
-    return redirect("/home-page")
+    return redirect("/index")
 
-@app.get("/home-page")
-def home_page():
+@app.get("/index")
+def index():
     spotify = spotify_manager(session)
     data = retrieve_user_data(spotify)
 
-    return render_template("index.html", name=spotify.me()["display_name"])
+    return render_template("index.html", name=spotify.me()["display_name"], data=data)
 
 
-@app.get("/search")
+@app.post("/search")
 def search():
-    depth = int(request.args.get('depth'))
+    depth = int(request.form['depth'])
     spotify = spotify_manager(session)
     
     def threaded_function(depth):
@@ -58,12 +58,15 @@ def search():
 
     thread = threading.Thread(target=threaded_function, kwargs={'depth': depth})
     thread.start()
+    time = ""
     if depth == 1:
-        return "1 - 2 minutes"
+        time = "1 - 2 minutes"
     elif depth == 2:
-        return "2 - 3 minutes"
+        time = "2 - 3 minutes"
     elif depth == 3: 
-        return "3 - 5 minutes"
+        time = "3 - 5 minutes"
+    
+    return render_template("submit.html", time=time)
 
 if __name__ == "__main__":
     app.run(debug=True)

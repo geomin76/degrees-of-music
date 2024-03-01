@@ -51,12 +51,12 @@ def search_genre_data(spotify, genres, playlist_id):
             time.sleep(5)
             playlists = spotify.search(type="playlist", q=genres[count], limit=3)
             for playlist in playlists["playlists"]["items"]:
-                if "picked just for you" in playlist["description"] and playlist["owner"]["display_name"] == "Spotify":
+                if playlist["owner"]["display_name"] == "The Sounds of Spotify":
                     tracks = spotify.playlist_tracks(playlist["id"], "items(track(id))", 25)["items"]
                     for track in random.sample(tracks, 15):
                         song_list.add("spotify:track:{}".format(track["track"]["id"]))
                     break
-                elif playlist["owner"]["display_name"] == "The Sounds of Spotify":
+                elif "picked just for you" in playlist["description"] and playlist["owner"]["display_name"] == "Spotify":
                     tracks = spotify.playlist_tracks(playlist["id"], "items(track(id))", 25)["items"]
                     for track in random.sample(tracks, 15):
                         song_list.add("spotify:track:{}".format(track["track"]["id"]))
