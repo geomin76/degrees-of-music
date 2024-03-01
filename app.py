@@ -1,12 +1,11 @@
 import os
-from flask import Flask, session, request, redirect
+from flask import Flask, session, request, redirect, render_template
 from flask_session import Session
 import spotipy
 from dotenv import load_dotenv
 from service.graph_client import bfs
 from service.spotify_client import retrieve_user_data, retrieve_user_genres, spotify_manager, search_genre_data, create_playlist
 import threading
-import time
 
 app = Flask(__name__)
 app = Flask(__name__)
@@ -18,17 +17,13 @@ Session(app)
 load_dotenv()
 
 @app.get("/")
-def read_root():
-    return "Hello, World!"
-
-@app.get("/login")
 def login():
     scope = "user-top-read playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
     cache_handler = spotipy.cache_handler.CacheFileHandler(session)
     auth_manager = spotipy.oauth2.SpotifyOAuth(scope=scope,
                                                cache_handler=cache_handler,
                                                show_dialog=True)
-    
+        
     # 2. if user has logged in, redirect and cache token
     if request.args.get("code"):
         auth_manager.get_access_token(request.args.get("code"))
@@ -37,15 +32,18 @@ def login():
     # 1. if user has not logged in yet
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         auth_url = auth_manager.get_authorize_url()
-        return {"auth_url": auth_url, "redirect": ""}
+        return render_template("login.html", auth_url=auth_url)
 
     # 3. user has been authenticated and redirected to proper URL
-    return {"auth_url": "", "redirect": "success"}
+    return redirect("/home-page")
 
-@app.get("/user-data")
-def user_data():
+@app.get("/home-page")
+def home_page():
     spotify = spotify_manager(session)
-    return retrieve_user_data(spotify)
+    data = retrieve_user_data(spotify)
+
+    return render_template("index.html", name=spotify.me()["display_name"])
+
 
 @app.get("/search")
 def search():
