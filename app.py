@@ -13,12 +13,14 @@ load_dotenv()
 
 @app.get("/")
 def main():
+    cleanup()
     scope = "user-top-read playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
     auth_manager = spotipy.oauth2.SpotifyOAuth(scope=scope,
                                                show_dialog=True)
         
     # 2. if user has logged in, redirect and cache token
     if request.args.get("code"):
+        cleanup()
         session['tokens'] = {
             'access_token': auth_manager.get_access_token(request.args.get("code"))["access_token"]
         }
@@ -26,6 +28,7 @@ def main():
     
     # 1. if user has not logged in yet
     if 'tokens' not in session:
+        cleanup()
         auth_url = auth_manager.get_authorize_url()
         return render_template("login.html", auth_url=auth_url)
 
@@ -34,6 +37,7 @@ def main():
 
 @app.get("/index")
 def index():
+    cleanup()
     spotify = spotipy.Spotify(auth=session['tokens'].get('access_token'))
     data = retrieve_user_data(spotify)
 
@@ -43,6 +47,7 @@ def index():
 @app.post("/search")
 def search():
     depth = int(request.form['depth'])
+    cleanup()
     spotify = spotipy.Spotify(auth=session['tokens'].get('access_token'))
     
     def threaded_function(depth):
@@ -62,6 +67,12 @@ def search():
         time = "3 - 5 minutes"
     
     return render_template("submit.html", time=time)
+
+def cleanup():
+    cache_file = '.cache'
+    if os.path.exists(cache_file):
+        os.remove(cache_file)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
