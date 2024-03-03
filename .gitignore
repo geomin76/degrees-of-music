@@ -5,3 +5,4 @@ __pycache__
 .flask_session
 .cache
 .DS_Store
+.spotify_caches/
