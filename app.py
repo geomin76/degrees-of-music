@@ -51,6 +51,7 @@ def main():
 
 @app.get("/index")
 def index():
+    # TODO: fix auth for user, copy the "spotify for you" route
     auth_manager = spotipy.oauth2.SpotifyOAuth(cache_path=session_cache_path())   
     if not auth_manager.get_cached_token():
         return redirect('/')
@@ -73,6 +74,8 @@ def search():
         genres = list(retrieve_user_genres(spotify))
         bfs_genres = bfs(genres, depth)
         playlist_id = create_playlist(spotify, bfs_genres)
+
+        # TODO: build caching here for search genre data
         search_genre_data(spotify, bfs_genres, playlist_id)
 
     thread = threading.Thread(target=threaded_function, kwargs={'depth': depth})
@@ -85,6 +88,7 @@ def search():
     elif depth == 3: 
         time = "3 - 5 minutes"
     
+    # TODO: perhaps instead of time, find the bfs data first and display the genres related and their "path of genres" to how it got there!
     return render_template("submit.html", time=time)
 
 if __name__ == "__main__":
