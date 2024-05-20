@@ -4,7 +4,6 @@ import time
 import random
 from urllib.request import urlopen
 import base64
-import datetime
 
 def spotify_manager(session):
     cache_handler = spotipy.cache_handler.CacheFileHandler(session)
@@ -45,11 +44,11 @@ def create_playlist(spotify, bfs_genres):
     return created_playlist["id"]
 
 def search_genre_data(spotify, genres, playlist_id):
-    for index in range(0, len(genres), 5):
-        song_list = set()
-        for count in range(index, index + 5):
+    for genre in genres:
+        try:
+            song_list = set()
             time.sleep(5)
-            playlists = spotify.search(type="playlist", q=genres[count], limit=3)
+            playlists = spotify.search(type="playlist", q=genre, limit=3)
             for playlist in playlists["playlists"]["items"]:
                 if playlist["owner"]["display_name"] == "The Sounds of Spotify":
                     tracks = spotify.playlist_tracks(playlist["id"], "items(track(id))", 25)["items"]
@@ -71,13 +70,13 @@ def search_genre_data(spotify, genres, playlist_id):
                             song_list.add("spotify:track:{}".format(track["track"]["id"]))
                     break
 
-        song_list = list(song_list)
-        random.shuffle(song_list)
-        spotify.playlist_add_items(playlist_id, song_list)
+            song_list = list(song_list)
+            random.shuffle(song_list)
+            spotify.playlist_add_items(playlist_id, song_list)
+        except:
+            print("Error, continuing...")
 
 def base64_img():
-    URL = 'https://senior-pics.s3.amazonaws.com/cap.jpg'
-    with urlopen(URL) as url:
-        f = url.read()
-        image = base64.b64encode(f).decode("ascii")
+    with open("cap.jpg", "rb") as f:
+        image = base64.b64encode(f.read())
         return image

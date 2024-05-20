@@ -1,0 +1,15 @@
+runtime: python39
+
+builtins:
+  - remote_api: on
+
+handlers:
+  - url: /static
+    static_dir: static
+  - url: /.*
+    script: auto
+
+env_variables:
+  SPOTIPY_CLIENT_ID: REPLACE
+  SPOTIPY_CLIENT_SECRET: REPLACE
+  SPOTIPY_REDIRECT_URI: REPLACE
