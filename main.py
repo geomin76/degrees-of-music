@@ -23,7 +23,8 @@ auth_query_parameters = {
     "response_type": "code",
     "redirect_uri": os.environ["SPOTIPY_REDIRECT_URI"],
     "scope": scope,
-    "client_id": os.environ["SPOTIPY_CLIENT_ID"]
+    "client_id": os.environ["SPOTIPY_CLIENT_ID"],
+    'show_dialog': True
 }
 
 #directs to introduction page
