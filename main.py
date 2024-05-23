@@ -17,7 +17,7 @@ app.secret_key = os.urandom(64)
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-scope = "user-top-read playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
+scope = "user-library-read user-top-read playlist-read-collaborative user-library-modify playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private user-read-playback-state user-modify-playback-state user-read-recently-played"
 
 auth_query_parameters = {
     "response_type": "code",
