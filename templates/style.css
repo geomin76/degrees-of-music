@@ -1,0 +1,63 @@
+body {
+    background: #f3f4f6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.gif-container{
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.capybara {
+    width: 300px; 
+}
+
+.capybara2 {
+    width: 200px
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.caption {
+    color: #555;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.right {
+    margin-top: 20px;
+}
+
+.button {
+    padding: 15px 30px;
+    background-color: #1db954;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #1ed760;
+}

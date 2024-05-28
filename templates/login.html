@@ -1,7 +1,26 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Degrees of Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <a href="/authorize">Login!</a>
+    <div class="page">
+        <div class="gif-container">
+        <img src="https://media0.giphy.com/media/dzbpWn5j0STRoIWLHW/200w.gif?cid=6c09b952xxv44ib2qkomwt0fa7w8ed8kpzl6ehx80upi5kre&ep=v1_gifs_search&rid=200w.gif&ct=g" class="capybara">
+        </div>
+            <div class="container">
+                <div class="left">
+                    <div class="caption">Log in to upload a Spotify playlist personalized to your taste. Discover and enjoy your favorite tracks!</div>
+                </div>
+                <div class="right">
+                    <a href="{{ auth_url }}" class="button">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
