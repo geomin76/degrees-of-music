@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Degrees of Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="page">
@@ -17,7 +17,7 @@
                     <div class="caption">Log in to upload a Spotify playlist personalized to your taste. Discover and enjoy your favorite tracks!</div>
                 </div>
                 <div class="right">
-                    <a href="{{ auth_url }}" class="button">Login</a>
+                    <a href="/authorize" class="button">Login</a>
                 </div>
             </div>
         </div>

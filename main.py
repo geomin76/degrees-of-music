@@ -7,17 +7,18 @@ from service.spotify_client import retrieve_user_data, retrieve_user_genres, sea
 import threading
 import requests
 from six.moves.urllib.parse import quote
+import base64
 import json
 
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(64)
+app.secret_key = os.environ["SECRET_KEY"]
 
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-scope = "user-library-read user-top-read playlist-read-collaborative user-library-modify playlist-read-private user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private user-read-playback-state user-modify-playback-state user-read-recently-played"
+scope = "user-library-read user-top-read user-library-modify user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
 
 auth_query_parameters = {
     "response_type": "code",
@@ -47,11 +48,15 @@ def callback():
     code_payload = {
         "grant_type": "authorization_code",
         "code": str(auth_token),
-        "redirect_uri": os.environ["SPOTIPY_REDIRECT_URI"],
-        'client_id':  os.environ["SPOTIPY_CLIENT_ID"],
-        'client_secret':  os.environ["SPOTIPY_CLIENT_SECRET"],
+        "redirect_uri": os.environ["SPOTIPY_REDIRECT_URI"]
     }
-    post_request = requests.post(SPOTIFY_TOKEN_URL, data=code_payload)
+    client_string = os.environ["SPOTIPY_CLIENT_ID"] + ":" + os.environ["SPOTIPY_CLIENT_SECRET"]
+    encoded_client_string = client_string.encode("ascii")
+    base64_encoded = base64.b64encode(encoded_client_string).decode("ascii")
+    post_request = requests.post(SPOTIFY_TOKEN_URL, data=code_payload, headers={
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "Basic " + base64_encoded
+    })
     response_data = json.loads(post_request.text)
     session['tokens'] = {
         'access_token': response_data["access_token"],
