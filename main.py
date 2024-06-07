@@ -97,8 +97,7 @@ def search():
     thread = threading.Thread(target=threaded_function, kwargs={'depth': depth})
     thread.start()
     
-    # TODO: perhaps instead of time, find the bfs data first and display the genres related and their "path of genres" to how it got there!
-    return render_template("submit.html", data=bfs_genres)
+    return render_template("submit.html", data=dictionary)
 
 if __name__ == "__main__":
     app.run(debug=True)

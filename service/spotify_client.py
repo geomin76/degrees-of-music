@@ -4,6 +4,7 @@ import time
 import random
 from urllib.request import urlopen
 import base64
+from retry import retry
 
 def spotify_manager(session):
     cache_handler = spotipy.cache_handler.CacheFileHandler(session)
@@ -40,8 +41,15 @@ def retrieve_user_genres(spotify):
 def create_playlist(spotify, bfs_genres):
     description = "This playlist was created with these genres {}!".format(", ".join(bfs_genres), )
     created_playlist = spotify.user_playlist_create(spotify.me()["id"], name="Degrees of Music playlist 🤠", description=description)
-    spotify.playlist_upload_cover_image(created_playlist["id"], base64_img())
+    try:
+        upload_cover(spotify, created_playlist)
+    except:
+        print("Error when uploading playlist cover")
     return created_playlist["id"]
+
+@retry(tries = 5, delay = 1)
+def upload_cover(spotify, created_playlist):
+    spotify.playlist_upload_cover_image(created_playlist["id"], base64_img())
 
 def search_genre_data(spotify, genres, playlist_id):
     for genre in genres:
