@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Degrees of Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+</head>
 <body>
     <div class="page">
         <div class="gif-container">
-            <img src="" class="capybara3">
         </div>
             <div class="container">
         {% if name %}
@@ -24,6 +23,7 @@
                 <label for="depth" class="caption">Select depth</label>
                 <input type="string" id="depth" name="depth" required>
             </div>
+            <p class ="caption-red">In the box choose any number that you want! 1 being the closest to your taste!</p>
     <br/>
             <button type="submit" class="button">Generate playlist</button>
         </form>
