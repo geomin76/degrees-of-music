@@ -6,35 +6,28 @@
     <title>Degrees of Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 <body>
     <div class="page">
-        <div class="container">
-            {% if artists %}
-                <p class="caption">Here are some artists:</p>
-                <ul>
-                    {% for artist in artists %}
-                        <li>
-                            <img src="{{ artist.image }}" alt="{{ artist.name }}">
-                            <p class="caption">{{ artist.name }}</p>
-                            <p class="caption">{{ artist.genres|join(', ') }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p class="caption">No artist data available.</p>
-            {% endif %}
-            <br>
-            <form method="POST" action="{{ url_for('search') }}">
-                <div class="form-group">
-                    <label for="depth" class="caption">Select depth</label>
-                    <input type="number" id="depth" name="depth" required>
-                </div>
-                <p class="caption-red">Choose any number you want! 1 being the closest to your taste.</p>
-                <br>
-                <button type="submit" class="button">Generate playlist</button>
-            </form>
+        <div class="gif-container">
         </div>
-    </div>
+            <div class="container">
+        {% if name %}
+            <p class="caption">Hi {{ name }}!!!</p>
+            <p class="caption"> {{ data }} </p>
+        {% endif %}
+    <br/>
+        <form method="POST" action="{{ url_for('search') }}">
+            <div class="form-group">
+                <label for="depth" class="caption">Select depth</label>
+                <input type="string" id="depth" name="depth" required>
+            </div>
+            <p class ="caption-red">Choose any number that you want! 1 being the closest to your taste!</p>
+    <br/>
+            <button type="submit" class="button">Generate playlist</button>
+        </form>
+</div>
 </body>
+
 </html>
