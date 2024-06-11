@@ -10,30 +10,24 @@
 </head>
 <body>
     <div class="page">
-        <div class="container">
-            <p class="caption">Your playlist will be in your Spotify library!</p>
-            <table class="data-table">
-                <tr>
-                    <th>Genre</th>
-                    <th>Artist</th>
-                    <th>Image</th>
-                </tr>
-                {% for genre in data['genres'] %}
-                <tr>
-                    <td>{{ genre }}</td>
-                    {% for artist in data['artist_data'] %}
-                        {% if loop.index0 == loop.parent.index0 %}
-                            <td>{{ artist['name'] }}</td>
-                            <td><img src="{{ artist['image'] }}" alt="{{ artist['name'] }}" width="100"></td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            <form action="/index">
-                <button type="submit" class="button">Go back home</button>
-            </form>
+        <div class="gif-container">
         </div>
-    </div>
+            <div class="container">
+        {% if name %}
+            <p class="caption">Hi {{ name }}!!!</p>
+            <p class="caption"> {{ data }} </p>
+        {% endif %}
+    <br/>
+        <form method="POST" action="{{ url_for('search') }}">
+            <div class="form-group">
+                <label for="depth" class="caption">Select depth</label>
+                <input type="string" id="depth" name="depth" required>
+            </div>
+            <p class ="caption-red">hoose any number that you want! 1 being the closest to your taste!</p>
+    <br/>
+            <button type="submit" class="button">Generate playlist</button>
+        </form>
+</div>
 </body>
+
 </html>
