@@ -67,3 +67,50 @@ body {
     border-bottom: 1px solid #ddd;
     padding: 8px;
 }
+
+.playlist-container {
+    margin-bottom: 20px;
+}
+
+.playlist-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.genre-list {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+.genre-list li {
+    margin-bottom: 5px;
+}
+
+.artist-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.artist {
+    width: 120px;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.artist-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.artist-name {
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}

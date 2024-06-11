@@ -6,28 +6,40 @@
     <title>Degrees of Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 <body>
     <div class="page">
-        <div class="gif-container">
+        <div class="container">
+            {% if data %}
+                <div class="playlist-container">
+                    <h2 class="playlist-heading">Recommended Genres</h2>
+                    <ul class="genre-list">
+                        {% for genre in data.genres %}
+                            <li>{{ genre }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h2 class="playlist-heading">Featured Artists</h2>
+                    <div class="artist-container">
+                        {% for artist in data.artist_data %}
+                            <div class="artist">
+                                <img src="{{ artist.image }}" alt="{{ artist.name }}" class="artist-image">
+                                <p class="artist-name">{{ artist.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <br/>
+            <form method="POST" action="{{ url_for('search') }}">
+                <div class="form-group">
+                    <label for="depth" class="caption">Select depth</label>
+                    <input type="string" id="depth" name="depth" required>
+                </div>
+                <p class="caption-red">Choose any number that you want! 1 being the closest to your taste!</p>
+                <br/>
+                <button type="submit" class="button">Generate playlist</button>
+            </form>
         </div>
-            <div class="container">
-        {% if name %}
-            <p class="caption">Hi {{ name }}!!!</p>
-            <p class="caption"> {{ data }} </p>
-        {% endif %}
-    <br/>
-        <form method="POST" action="{{ url_for('search') }}">
-            <div class="form-group">
-                <label for="depth" class="caption">Select depth</label>
-                <input type="string" id="depth" name="depth" required>
-            </div>
-            <p class ="caption-red">hoose any number that you want! 1 being the closest to your taste!</p>
-    <br/>
-            <button type="submit" class="button">Generate playlist</button>
-        </form>
-</div>
+    </div>
 </body>
-
 </html>
