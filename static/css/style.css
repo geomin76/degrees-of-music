@@ -1,14 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: #f3f4f6;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-.gif-container{
-    position: absolute;
-    top: 24%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .page {
@@ -61,6 +60,7 @@ body {
 .data-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .data-table th {
