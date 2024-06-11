@@ -11,14 +11,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.capybara {
-    width: 300px; 
-}
-
-.capybara2 {
-    width: 200px
-}
-
 .page {
     display: flex;
     justify-content: center;
@@ -42,6 +34,10 @@ body {
     font-size: 22px;
     text-align: center;
     margin-bottom: 40px;
+}
+
+.caption-red{
+    color:crimson
 }
 
 .right {
