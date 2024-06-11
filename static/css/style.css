@@ -73,8 +73,7 @@ body {
 }
 
 .playlist-heading {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-weight: normal;
 }
 
 .genre-list {
@@ -83,8 +82,9 @@ body {
     padding-left: 20px;
 }
 
-.genre-list li {
-    margin-bottom: 5px;
+.genre-list {
+    list-style-type: disc;
+    margin-left: 20px;
 }
 
 .artist-container {
@@ -93,9 +93,6 @@ body {
 }
 
 .artist {
-    width: 120px;
-    text-align: center;
-    margin-right: 20px;
     margin-bottom: 20px;
 }
 
@@ -113,4 +110,20 @@ body {
 
 .form-group {
     margin-bottom: 10px;
+}
+
+.related-genres {
+    margin-top: 40px; 
+}
+
+.related-genres .playlist-heading {
+    margin-top: 0; 
+}
+
+.related-genres .genre-list {
+    margin-top: 10px; 
+}
+
+.related-genres .genre-list li {
+    margin-bottom: 8px;
 }

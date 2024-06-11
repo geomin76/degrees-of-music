@@ -12,18 +12,17 @@
         <div class="container">
             {% if data %}
                 <div class="playlist-container">
-                    <h2 class="playlist-heading">Recommended Genres</h2>
-                    <ul class="genre-list">
-                        {% for genre in data.genres %}
-                            <li>{{ genre }}</li>
-                        {% endfor %}
-                    </ul>
-                    <h2 class="playlist-heading">Featured Artists</h2>
+                    <h2 class="playlist-heading">Your top five recent artists and their genres</h2>
                     <div class="artist-container">
                         {% for artist in data.artist_data %}
                             <div class="artist">
                                 <img src="{{ artist.image }}" alt="{{ artist.name }}" class="artist-image">
                                 <p class="artist-name">{{ artist.name }}</p>
+                                <ul class ="genre-list">
+                                    {% for genre in data.genres %}
+                                        <li>{{ genre }}</li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         {% endfor %}
                     </div>

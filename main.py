@@ -74,7 +74,6 @@ def index():
 
     return render_template("index.html", name=spotify.me()["display_name"], data=data)
 
-
 @app.post("/search")
 def search():
     depth = int(request.form['depth'])
