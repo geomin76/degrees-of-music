@@ -5,22 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Degrees of Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="page">
         <div class="gif-container">
-        </div>
-            <div class="container">
-                <p class="caption">Your playlist will be in your Spotify library!</p>
-                <p class="caption">{{data}}</p>
-                <form action="/index">
-                    <button type="submit" class="button">Go back home</button>
-                </form>
-            </div>
+        <div class="container">
+            <p class="caption">Your playlist will be in your Spotify library!</p>
+            <table class="data-table">
+                <tr>
+                    <th>Genre</th>
+                    <th>Returned Genre</th>
+                    <th>Path</th>
+                </tr>
+                {% for genre, details in data.items() %}
+                <tr>
+                    <td>{{ genre }}</td>
+                    <td>{{ details.returned_genre }}</td>
+                    <td>{{ details.path | join(', ') }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <form action="/index">
+                <button type="submit" class="button">Go back home</button>
+            </form>
         </div>
     </div>
 </body>
-
 </html>
