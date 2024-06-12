@@ -10,8 +10,12 @@
 <body>
     <div class="page">
         <div class="container">
-            {% if data %}
-                <div class="playlist-container">
+            <div class="playlist-container">
+                <div class="explanation-box">
+                    <h3>How It Works!</h3>
+                    <p>This code passes through your top five recent artists along with their genres using data from the backend. From any number the user selects the degree underscores the genre that relates to it. For example: Kpop will be passed to Pop. Rap will be passed to R&B and so on.</p>
+                </div>
+                    {% if data %}
                     <h2 class="playlist-heading">Your top five recent artists and their genres</h2>
                     <div class="artist-container">
                         {% for artist in data.artist_data %}

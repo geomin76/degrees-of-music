@@ -1,3 +1,4 @@
+/* Functionality Fonts and Page Color*/
 body {
     background: #f3f4f6;
     font-family: Arial, sans-serif;
@@ -51,7 +52,7 @@ body {
 .button:hover {
     background-color: #1ed760;
 }
-
+/* Data From Backend */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -68,8 +69,11 @@ body {
     padding: 8px;
 }
 
+/* Artists */
 .playlist-container {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .playlist-heading {
@@ -108,6 +112,7 @@ body {
     margin-top: 5px;
 }
 
+/* Genres */
 .form-group {
     margin-bottom: 10px;
 }
@@ -126,4 +131,21 @@ body {
 
 .related-genres .genre-list li {
     margin-bottom: 8px;
+}
+
+/* How It Works Box */
+.explanation-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.explanation-box h3 {
+    margin: 0;
+}
+
+.explanation-box p {
+    font-size: 14px;
 }
