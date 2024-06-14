@@ -103,13 +103,21 @@ body {
 .artist-image {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 35%;
     margin: 0 auto;
     display: block;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .artist-name {
     margin-top: 5px;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Genres */
@@ -131,6 +139,10 @@ body {
 
 .related-genres .genre-list li {
     margin-bottom: 8px;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* How It Works Box */
