@@ -17,7 +17,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 800px;
+    max-width: 1000px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -103,22 +103,13 @@ body {
 .artist-image {
     width: 100px;
     height: 100px;
-    border-radius: 35%;
+    border-radius: 50%;
     margin: 0 auto;
     display: block;
-    overflow-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .artist-name {
     margin-top: 5px;
-    overflow-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-items: flex-start;
 }
 
 /* Genres */
@@ -140,10 +131,6 @@ body {
 
 .related-genres .genre-list li {
     margin-bottom: 8px;
-    overflow-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* How It Works Box */
