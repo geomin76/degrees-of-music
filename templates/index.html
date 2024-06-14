@@ -13,7 +13,8 @@
             <div class="playlist-container">
                 <div class="explanation-box">
                     <h3>How It Works!</h3>
-                    <p>This code passes through your top five recent artists along with their genres using data from the backend. From any number the user selects the degree underscores the genre that relates to it. For example: Kpop will be passed to Pop. Rap will be passed to R&B and so on.</p>
+                    <p>This code retrieves your top five recent artists and their genres using data from the backend through the concepts of <strong>Six Degrees of Separation</strong> and <strong>Breadth-First Search</strong>. Breadth-First Search is like exploring a map starting from your current location and moving outwards to nearby places. Meanwhile, Six Degrees of Separation indicates your <strong>Depth</strong>. Breadth-First Search traverses through the genres of artists starting from your current location, then returns a Spotify library that you input within the box - Depth. This process finds related artists or songs that closely align with your taste. The closer your depth, the more similar your music taste will be.
+                    </p>
                 </div>
                     {% if data %}
                     <h2 class="playlist-heading">Your top five recent artists and their genres</h2>
