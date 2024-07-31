@@ -18,7 +18,7 @@ app.secret_key = os.environ["SECRET_KEY"]
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-scope = "user-library-read user-top-read user-library-modify user-read-private user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
+scope = "user-library-read user-top-read user-library-modify user-read-email ugc-image-upload playlist-modify-public playlist-modify-private"
 
 auth_query_parameters = {
     "response_type": "code",
